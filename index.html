@@ -70,7 +70,7 @@
           e.preventDefault()
           const resourceid = $(this).find("input[name='resourceid']").val();
           console.log("resource id", resourceid)
-          window.location.href = "/?resourceid=" + resourceid;
+          window.location.href = "?resourceid=" + resourceid;
         });
         let resourceid = getUrlVar()["resourceid"];
         if (resourceid){
