@@ -94,7 +94,7 @@
 
             "}"].join('');
 
-            const url = "http://sparql.scta.info/ds/query?query=" + query + "&output=json"
+            const url = "https://sparql.scta.info/ds/query?query=" + query + "&output=json"
             $.get(url, function(data){
               displayCitation(data, resource)
             })
@@ -117,7 +117,7 @@
             "<" + resource + "> <http://scta.info/property/hasManifestation> ?manifestation .",
             "}"].join('');
 
-            const url = "http://sparql.scta.info/ds/query?query=" + query + "&output=json"
+            const url = "https://sparql.scta.info/ds/query?query=" + query + "&output=json"
             $.get(url, function(data){
               console.log(data)
               $("#manifestations").append("<h2>Available Manifestations of this Text Object</h2><p>Select to add manifestation to citation")
@@ -141,7 +141,7 @@
          "?codex <http://purl.org/dc/elements/1.1/title> ?codexTitle .",
          "}",
          "ORDER BY ?surface_order"].join('');
-         const url = "http://sparql.scta.info/ds/query?query=" + query + "&output=json"
+         const url = "https://sparql.scta.info/ds/query?query=" + query + "&output=json"
             $.get(url, function(data){
               console.log("manifestation surface data", data)
               const title = data.results.bindings[0].codexTitle.value
