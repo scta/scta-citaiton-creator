@@ -71,7 +71,6 @@
         $("#resource-input").submit(function(e){
           e.preventDefault()
           const resourceid = $(this).find("input[name='resourceid']").val();
-          console.log("resource id", resourceid)
           window.location.href = "?resourceid=" + resourceid;
         });
         let resourceid = getUrlVar()["resourceid"];
@@ -102,15 +101,12 @@
 
       }
       function displayCitation(data, id){
-
-        console.log(data);
         $("#citation-expression-header").html("Citation for text object: " + id )
         $("#citation").html("<span id='expression-citation'>" + data.results.bindings[0].longTitle.value + "</span><span id='manifestation-citation'/>")
 
       }
 
       function displayAvailableManifestation(resource){
-        console.log("test");
         var query = [
             "SELECT DISTINCT ?manifestation ",
             "WHERE { ",
@@ -119,7 +115,6 @@
 
             const url = "https://sparql.scta.info/ds/query?query=" + query + "&output=json"
             $.get(url, function(data){
-              console.log(data)
               $("#manifestations").append("<h2>Available Manifestations of this Text Object</h2><p>Select to add manifestation to citation")
               data.results.bindings.forEach(function(manifestation){
                 $("#manifestations").append("<button class='mid' data-mid='" + manifestation.manifestation.value + "'>" + manifestation.manifestation.value + "</button>")
@@ -129,7 +124,6 @@
       }
 
       function displayManifestationId(resource){
-        console.log("test");
         var query = [
          "SELECT DISTINCT ?manifestationTitle ?manifestationSurface ?surfaceTitle ?codexTitle  ",
          "{",
@@ -143,7 +137,6 @@
          "ORDER BY ?surface_order"].join('');
          const url = "https://sparql.scta.info/ds/query?query=" + query + "&output=json"
             $.get(url, function(data){
-              console.log("manifestation surface data", data)
               const title = data.results.bindings[0].codexTitle.value
               const start = data.results.bindings[0].surfaceTitle.value
               const end = data.results.bindings[data.results.bindings.length - 1].surfaceTitle.value
